@@ -13,16 +13,16 @@ During the commissioning process, a device cryptographically proves (attests) to
 that:
 
 - it is a genuine product
-- it is a product that passed Matter compliance tests and has been thus certified by CSA.
+- it is a product that passed Matter compliance tests and has been thus certified by CSA
 
 In order to accomplish those goals, the device carries:
 
 - A Device Attestation Certificate (DAC) that conveys device's manufacturer ID (VID) and product ID
-(PID). The DAC chains up to a set of trusted roots, approved by CSA members.
+(PID). The DAC chains up to a set of trusted roots, approved by CSA members
 - A securely-stored, private key associated with the public key stored in the DAC that proves the
-device owns this unique certificate.
+device owns this unique certificate
 - Certificate declaration is a statement cryptographically signed by CSA that states that a tuple
-(VID,PID) has passed Matter compliance tests.
+(VID,PID) has passed Matter compliance tests
 
 During the development phase, the manufacturer is able to test their Devices without the full
 Attestation process. Testers should be explicitly informed that the Device is under testing, and it
@@ -45,7 +45,7 @@ Matter is specified by [RFC5280](https://datatracker.ietf.org/doc/html/rfc5280).
 - Certificate Serial Number
 - Validity, where expiration can be indeterminate
 - Signature
-- Vendor ID and Product ID, which are attributes of the MatterDACName in the DAC subject.
+- Vendor ID and Product ID, which are attributes of the MatterDACName in the DAC subject
 
 The DAC is unique per device and associated with the unique attestation key pair within the product.
 It is issued by a Certificate Authority (CA) associated with the Device manufacturer.
@@ -69,7 +69,7 @@ The PAI is also a X.509 v3 certificate that includes:
 - Certificate Serial Number
 - Validity, where expiration can be indeterminate
 - Signature
-- Vendor ID and Product ID (optionally) are attributes of the MatterDACName in the DAC subject.
+- Vendor ID and Product ID (optionally) are attributes of the MatterDACName in the DAC subject
 
 Lastly, the PAA is the root certificate in the chain and it is self-signed. It includes:
 
@@ -149,21 +149,21 @@ executes the following steps:
 
 1. Commissioner generates a random 32 byte attestation nonce. In cryptography jargon, a nonce
 (number used once) is a random number generated in the cryptographic procedure and meant to be used
-once.
-2. Commissioner sends the nonce to the Commissionee and requests the Attestation Information.
-3. Commissionee generates the Attestation Information and signs it with the Attestation Private Key.
+once
+2. Commissioner sends the nonce to the Commissionee and requests the Attestation Information
+3. Commissionee generates the Attestation Information and signs it with the Attestation Private Key
 4. Commissioner recovers the DAC and PAI certificate from the Commissionee, and looks up the PAA
-certificate from its Matter trust store.
+certificate from its Matter trust store
 5. Commissioner validates the Attestation Information. These are the conditions for validation:
-    - DAC certificate chain must be validated, including revocation checks on the PAI and PAA.
-    - VID on the DAC matches the VID on the PAI.
-    - The Attestation Signature is valid.
-    - Nonce in Device Attestation Elements matches the nonce provided by the Commissioner.
+    - DAC certificate chain must be validated, including revocation checks on the PAI and PAA
+    - VID on the DAC matches the VID on the PAI
+    - The Attestation Signature is valid
+    - Nonce in Device Attestation Elements matches the nonce provided by the Commissioner
     - Certificate Declaration Signature is valid using one of the Alliance's well-known
-    Certification Declaration signing keys.
+    Certification Declaration signing keys
     - Firmware Information (if present and supported by Commissioner) matches an entry in the
-    Distributed Compliance Ledger.
+    Distributed Compliance Ledger
     - Additional VID/PID validations also take place between the Device Basic Information Cluster,
-    Certification Declaration and the DAC.
+    Certification Declaration and the DAC
 
 _This content was originally published on the [Google Developer Site](https://developers.home.google.com/matter/primer)_
