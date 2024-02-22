@@ -4,7 +4,7 @@ chapter = false
 weight = 30
 +++
 
-# Connectivity Trasnsports
+# Connectivity Transports
 
 In principle, any IPv6-bearing network is suitable for Matter deployment, subject to supporting a
 few core IPv6 standards. In the current version of the specification, we focus on three link layer
